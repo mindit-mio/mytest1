@@ -61,7 +61,8 @@ async def build_image():
     )
     trivy_output = await trivy_container.stdout()
     #dagger -m github.com/jpadams/daggerverse/trivy call scan-image --image-ref debian:latest
-    image_ref = await image_container.publish(f"ttl.sh/mytest1-github-{random.randrange(10 ** 8)}")
+    #image_ref = await image_container.publish(f"ttl.sh/mytest1-github-{random.randrange(10 ** 8)}")
+    image_ref = await image_container.publish(f"ttl.sh/mytest1-github-12345")
     print(f"Published image to: {image_ref}")
 
 #dagger run python3 ci.py
