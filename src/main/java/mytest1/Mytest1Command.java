@@ -22,7 +22,7 @@ public class Mytest1Command implements Runnable {
     public void run() {
         // business logic here
         //if (verbose) {
-            System.out.println("Hi from mytest1!");
+            System.out.println("Github hi from mytest1!");
         //}
     }
 }
