@@ -31,6 +31,34 @@ async def compile():
     )
     await build_dir.export("build/")
 
+async def codeql_analysis():
+  async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
+    src = (
+      client
+      .host()
+      .directory(".", exclude=["build/", ".gradle/"])
+    )
+    results = (
+      client
+      .host()
+      .directory(".")
+      .with_new_directory("results")
+      .directory("./results")
+    )
+    analysis_container = (
+      client
+      .container()
+      .from_("btnguyen2k/codeql-container")
+      .with_directory("/opt/src", src, exclude=[], include=[], owner="codeql:codeql")
+      .with_directory("/opt/results", results, exclude=[], include=[], owner="codeql:codeql")
+    )
+    results_dir = (
+      analysis_container
+      .with_exec(["security","--override","--language=java","--output=sarif-latest"])
+      .directory("/opt/results/")
+    )
+    await results_dir.export("results/")
+
 async def build_image():
   async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
     src = (
@@ -68,6 +96,7 @@ async def build_image():
 #dagger run python3 ci.py
 async def main():
     await compile()
+    await codeql_analysis()
     await build_image()
     #graphql https://archive.docs.dagger.io/0.9/cli/389936/run-pipelines-cli/
 
