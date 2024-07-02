@@ -35,7 +35,7 @@ dagger run python3 ci.py
 ```
 after installing 3 pre-requisite:
 ```bash
-python
+dagger language of choice (can be either: python, node, bash, etc.)
 dagger.io
 docker (Rancher, Docker fo Windows, etc.)
 ```
