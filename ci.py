@@ -3,8 +3,6 @@ import random
 import anyio
 import dagger
 
-#https://dagger-io.readthedocs.io/en/sdk-python-v0.1.1/index.html
-
 async def compile():
   async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
     src = (
@@ -88,8 +86,6 @@ async def build_image():
       .with_exec(["image", "--scanners", "vuln", "--input", "/myImage"])
     )
     trivy_output = await trivy_container.stdout()
-    #dagger -m github.com/jpadams/daggerverse/trivy call scan-image --image-ref debian:latest
-    #image_ref = await image_container.publish(f"ttl.sh/mytest1-github-{random.randrange(10 ** 8)}")
     image_ref = await image_container.publish(f"ttl.sh/mytest1-github-12345")
     print(f"Published image to: {image_ref}")
 
@@ -98,6 +94,5 @@ async def main():
     await compile()
     await codeql_analysis()
     await build_image()
-    #graphql https://archive.docs.dagger.io/0.9/cli/389936/run-pipelines-cli/
 
 anyio.run(main)
