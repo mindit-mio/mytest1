@@ -40,11 +40,9 @@ dagger.io
 docker (Rancher, Docker fo Windows, etc.)
 ```
 > See the dagger pipeline [ci.py](./ci.py)
-> See the 
 
-In your GitHub action pipeline, you can have minimal code (see [, 
-which is runnign the same dagger pipeline
-
+In your GitHub action pipeline, you have minimal code (see [.github/workflows/main.yml](./.github/workflows/main.yml), 
+which is running the same dagger pipeline.
 
 
 ## Using the Image
