@@ -1,8 +1,18 @@
-# Dagger test
+# Dagger Test
 
 This is a sample project
 
 
+## Delivering the Project
+
+To deliver this project, you need to:
+
+* build the Java software (using gradle)
+* do a code analysis using CodeQL
+* package the Java software into a container image (using docker)
+
+
+## Using the Image
 ```bash
 $ docker run -it IMAGENAME /app/mytest1-0.1/bin/mytest1
 
