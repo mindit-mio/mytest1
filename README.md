@@ -22,7 +22,7 @@ Locally, before the commit, you need to run the steps manually, after installing
 java
 gradle
 codeql
-docker (Rancher, Docker fo Windows, etc.)
+docker (Rancher, Docker for Windows, etc.)
 trivy
 ```
 
